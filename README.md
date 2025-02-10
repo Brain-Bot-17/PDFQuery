@@ -1,109 +1,71 @@
-# **GenieRAG: Retrieval-Augmented Generation (RAG) with LLM**
-
-## **📌 Overview**
-GenieRAG is a **Retrieval-Augmented Generation (RAG) system** that combines **document retrieval** and **LLM-based response generation**. The system retrieves relevant document snippets and enhances an LLM's response quality by providing **contextualized answers**.
-
-## **🚀 Features**
-✅ Document retrieval using **FAISS** or **ChromaDB**
-✅ Embedding generation with **Hugging Face Sentence Transformers**
-✅ Response generation using **GPT-2**
-✅ FastAPI-powered REST API for interaction
-✅ NLP preprocessing and chunking using **LangChain**
-✅ Experiment tracking with **MLflow** (optional)
-
----
+# GenieRAG 🚀  
+A **Retrieval-Augmented Generation (RAG) system** that extracts text from PDFs, stores vector embeddings in **FAISS**, retrieves relevant chunks, and generates responses using an **LLM**.  
 
 ## **🛠️ Tech Stack**
 | **Category**        | **Tool/Library Used** |
 |---------------------|----------------------|
-| **Language**       | Python 3.9+          |
+| **Language**       | Python 3.11         |
 | **LLM**            | GPT-2 (Hugging Face) |
 | **Embeddings**     | Sentence Transformers (`all-MiniLM-L6-v2`) |
-| **Vector Store**   | FAISS / ChromaDB     |
+| **Vector Store**   | FAISS      |
 | **API Framework**  | FastAPI              |
 | **Data Processing** | LangChain, pdfplumber, PyMuPDF |
-| **Experiment Tracking** | MLflow (Optional) |
+| **Data Tracking** | DVC |
 
----
-
-## **📂 Project Structure**
-```
-GenieRAG/
-│── models/                 # Store downloaded models
-│── data/                   # Input documents
-│── src/
-│   │── vectorstore/
-│   │   │── embed.py         # Convert text into embeddings
-│   │   │── retrieve.py      # Retrieve relevant chunks from FAISS/ChromaDB
-│   │── llm/
-│   │   │── generate_response.py  # Generate responses using GPT-2
-│   │   │── api.py           # FastAPI server
-│── requirements.txt         # Python dependencies
-│── README.md                # Project documentation
-```
-
----
-
-## **📦 Installation & Setup**
-### **🔹 Step 1: Clone the Repository**
+## 🔹 Setup  
+Clone the repository:  
 ```sh
-git clone https://github.com/yourusername/GenieRAG.git
+git clone https://github.com/Khushdeep-22102/GenieRAG.git
 cd GenieRAG
 ```
 
-### **🔹 Step 2: Install Dependencies**
+Create a virtual environment and activate it:  
+```sh
+python -m venv venv  
+venv\Scripts\activate
+```
+
+Install dependencies:  
 ```sh
 pip install -r requirements.txt
 ```
 
-### **🔹 Step 3: Download Pretrained Models**
-Run the following command to download GPT-2 and embeddings model:
+## 🔹 Usage  
+
+### **1️⃣ Add Data**  
+Place PDFs or text files in `data/raw/`.
+
+### **2️⃣ Extract Text**  
 ```sh
-python -c "from transformers import AutoModelForCausalLM, AutoTokenizer; AutoModelForCausalLM.from_pretrained('gpt2'); AutoTokenizer.from_pretrained('gpt2')"
-python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
+python src/preprocessing/extract_text.py
 ```
 
----
-
-## **🚀 Usage**
-### **🔹 Step 1: Create Document Embeddings**
+### **3️⃣ Chunk Text**  
 ```sh
-python src/vectorstore/embed.py
+python src/preprocessing/chunk_text.py
 ```
 
-### **🔹 Step 2: Run the FastAPI Server**
+### **4️⃣ Generate Embeddings & Store in FAISS**  
 ```sh
-python src/llm/api.py
+python src/vectorstore/generate_embeddings.py
 ```
-Now, open **http://127.0.0.1:8000/docs** to interact with the API.
 
-### **🔹 Step 3: Query the API** (via Postman or cURL)
-#### **Postman Instructions**
-1️⃣ Open **Postman** → Create a new `POST` request.
-2️⃣ Set the URL to:
-```
-http://127.0.0.1:8000/ask
-```
-3️⃣ Go to the **Body** tab → Select `raw` → Choose `JSON`
-4️⃣ Enter the following JSON payload:
-```json
-{
-    "query": "What are the symptoms of plant disease?"
-}
-```
-5️⃣ Click `Send`
-
-#### **Alternatively, use cURL:**
+### **5️⃣ Retrieve Relevant Chunks**  
 ```sh
-curl -X POST "http://127.0.0.1:8000/ask" -H "Content-Type: application/json" -d '{"query": "What are the causes of plant diseases?"}'
+python src/vectorstore/retrieve.py
 ```
 
----
+### **6️⃣ Generate Response**  
+```sh
+python src/llm/generate_response.py
+```
+You can now **input a question**, and the model will generate an answer based on the retrieved document chunks.  
 
-## **📌 Next Steps**
-🔹 Enhance the retriever by experimenting with **different embedding models**.
-🔹 Fine-tune the LLM for domain-specific tasks.
-🔹 Extend with **document ingestion automation** using Prefect or Airflow.
-
-💡 **Enjoy building with RAG + NLP!** 🚀
-
+**Example:**  
+```sh
+Enter your question: What is artificial intelligence?
+```
+**Response:**  
+```sh
+Artificial intelligence (AI) is the simulation of human intelligence in machines that are programmed to think and learn like humans. It encompasses various technologies, such as machine learning, natural language processing, and computer vision, to enable machines to perform tasks that typically require human intelligence.
+```
