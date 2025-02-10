@@ -4,7 +4,7 @@ import pickle
 import numpy as np
 from sentence_transformers import SentenceTransformer
 
-VECTOR_DB_DIR = "C:/Users/HP/OneDrive/Desktop/GenieRAG/data/vector_db/"
+VECTOR_DB_DIR = "data/vector_db"
 MODEL_NAME = "all-MiniLM-L6-v2"
 
 # Load model and FAISS index

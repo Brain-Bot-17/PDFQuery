@@ -5,8 +5,8 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 
 # Define absolute paths
-DATA_DIR = "C:/Users/HP/OneDrive/Desktop/GenieRAG/data/processed/chunks/"
-VECTOR_DB_DIR = "C:/Users/HP/OneDrive/Desktop/GenieRAG/data/vector_db/"
+DATA_DIR = "data/processed/chunks"
+VECTOR_DB_DIR = "data/vector_db"
 MODEL_NAME = "all-MiniLM-L6-v2"
 
 # Load sentence transformer model

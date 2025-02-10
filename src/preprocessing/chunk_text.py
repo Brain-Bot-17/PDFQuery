@@ -1,8 +1,8 @@
 import os
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
-DATA_DIR = "data/processed/"
-OUTPUT_DIR = "data/processed/chunks/"
+DATA_DIR = "data/processed"
+OUTPUT_DIR = "data/processed/chunks"
 
 # Create output directory if not exists
 os.makedirs(OUTPUT_DIR, exist_ok=True)
