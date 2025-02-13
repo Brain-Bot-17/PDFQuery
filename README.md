@@ -5,19 +5,12 @@ A **Retrieval-Augmented Generation (RAG) system** that extracts text from PDFs, 
 | **Category**        | **Tool/Library Used** |
 |---------------------|----------------------|
 | **Language**       | Python 3.11         |
-<<<<<<< HEAD
 | **LLM**            | Facebook OPT-350M (Hugging Face) |
-=======
-| **LLM**            | GPT-2 (Hugging Face) |
->>>>>>> 925935cc5b7ac5645175535b09deea481ae1d5e8
 | **Embeddings**     | Sentence Transformers (`all-MiniLM-L6-v2`) |
 | **Vector Store**   | FAISS      |
 | **API Framework**  | FastAPI              |
 | **Data Processing** | LangChain, pdfplumber, PyMuPDF |
-<<<<<<< HEAD
-=======
-| **Data Tracking** | DVC |
->>>>>>> 925935cc5b7ac5645175535b09deea481ae1d5e8
+
 
 ## 🔹 Setup  
 Clone the repository:  
@@ -67,18 +60,6 @@ python src/vectorstore/retrieve.py
 python src/llm/generate_response.py
 ```
 You can now **input a question**, and the model will generate an answer based on the retrieved document chunks.  
-<<<<<<< HEAD
-
-**Example:**  
-```sh
-Enter your question: What is artificial intelligence?
-```
-**Response:**  
-```sh
-Artificial intelligence (AI) is the simulation of human intelligence in machines that are programmed to think and learn like humans. It encompasses various technologies, such as machine learning, natural language processing, and computer vision, to enable machines to perform tasks that typically require human intelligence.
-```
-=======
->>>>>>> 925935cc5b7ac5645175535b09deea481ae1d5e8
 
 **Example:**  
 ```sh
