@@ -1,2 +1,39 @@
-\venv
-/data
+# Ignore compiled Python files
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore virtual environments
+venv/
+.env/
+.venv/
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore logs and temporary files
+logs/
+*.log
+*.tmp
+
+# Ignore data files (optional)
+*.csv
+*.json
+*.db
+*.sqlite
+*.h5
+*.npy
+
+
+# Ignore VSCode and PyCharm settings (if applicable)
+.vscode/
+.idea/
+
+# Ignore cache and build artifacts
+build/
+dist/
+*.egg-info/
+
+/models
+*.ipynb
