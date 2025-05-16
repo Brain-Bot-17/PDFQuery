@@ -1,19 +1,17 @@
+# backend/vectorstore/generate_embeddings.py
 import os
 import faiss
 import pickle
 import numpy as np
 from sentence_transformers import SentenceTransformer
 
-# Define absolute paths
 DATA_DIR = "data/processed/chunks"
 VECTOR_DB_DIR = "data/vector_db"
 MODEL_NAME = "all-MiniLM-L6-v2"
 
-# Load sentence transformer model
 model = SentenceTransformer(f"sentence-transformers/{MODEL_NAME}")
 
 def load_chunks():
-    """Load chunked text files."""
     chunks = []
     for filename in os.listdir(DATA_DIR):
         if filename.endswith("_chunks.txt"):
@@ -22,22 +20,16 @@ def load_chunks():
     return chunks
 
 def store_faiss():
-    """Convert text to embeddings and store in FAISS."""
+    os.makedirs(VECTOR_DB_DIR, exist_ok=True)
     chunks = load_chunks()
     embeddings = model.encode(chunks, show_progress_bar=True)
 
-    # Store embeddings in FAISS index
-    index = faiss.IndexFlatL2(embeddings.shape[1])  # L2 distance
+    index = faiss.IndexFlatL2(embeddings.shape[1])
     index.add(np.array(embeddings))
-
-    # Save index
     faiss.write_index(index, os.path.join(VECTOR_DB_DIR, "faiss_index"))
-    
-    # Save chunks mapping
+
     with open(os.path.join(VECTOR_DB_DIR, "chunks.pkl"), "wb") as f:
         pickle.dump(chunks, f)
-    
-    print(f"✅ Stored {len(chunks)} embeddings in FAISS.")
 
-if __name__ == "__main__":
-    store_faiss()
+    print(f"✅ Stored {len(chunks)} embeddings in FAISS.")
+    return len(chunks)
