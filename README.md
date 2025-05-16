@@ -1,4 +1,4 @@
-# GenieRAG 🚀  
+# PDFQuery 🚀  
 A **document retrieval system** that extracts text from PDFs, stores vector embeddings in **FAISS**, and retrieves relevant chunks using semantic similarity search. 
 ---
 
@@ -16,7 +16,7 @@ A **document retrieval system** that extracts text from PDFs, stores vector embe
 ## 🔹 Setup  
 Clone the repository:  
 ```sh
-git clone https://github.com/Khushdeep-22102/GenieRAG.git
+git clone https://github.com/Brain-Bot-17/PDFQuery.git
 cd GenieRAG
 
 ```
