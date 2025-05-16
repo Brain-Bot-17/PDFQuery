@@ -1,22 +1,24 @@
 # GenieRAG 🚀  
-A **Retrieval-Augmented Generation (RAG) system** that extracts text from PDFs, stores vector embeddings in **FAISS**, retrieves relevant chunks, and generates responses using an **LLM**.  
+A **document retrieval system** that extracts text from PDFs, stores vector embeddings in **FAISS**, and retrieves relevant chunks using semantic similarity search. 
+---
 
 ## **🛠️ Tech Stack**
 | **Category**        | **Tool/Library Used** |
-|---------------------|----------------------|
-| **Language**       | Python 3.11         |
-| **LLM**            | Facebook OPT-350M (Hugging Face) |
-| **Embeddings**     | Sentence Transformers (`all-MiniLM-L6-v2`) |
-| **Vector Store**   | FAISS      |
-| **API Framework**  | FastAPI              |
-| **Data Processing** | LangChain, pdfplumber, PyMuPDF |
+|---------------------|------------------------|
+| **Language**         | Python 3.11             |
+| **Embeddings**       | Sentence Transformers (`all-MiniLM-L6-v2`) |
+| **Vector Store**     | FAISS                  |
+| **API Framework**    | FastAPI                |
+| **Data Processing**  | LangChain, pdfplumber, PyMuPDF |
 
+---
 
 ## 🔹 Setup  
 Clone the repository:  
 ```sh
 git clone https://github.com/Khushdeep-22102/GenieRAG.git
 cd GenieRAG
+
 ```
 
 Create a virtual environment and activate it:  
@@ -55,17 +57,18 @@ python src/vectorstore/generate_embeddings.py
 python src/vectorstore/retrieve.py
 ```
 
-### **6️⃣ Generate Response**  
-```sh
-python src/llm/generate_response.py
-```
-You can now **input a question**, and the model will generate an answer based on the retrieved document chunks.  
+
+The system will now return the most relevant document chunks in response to your query using semantic similarity.
 
 **Example:**  
 ```sh
-Enter your question: What is artificial intelligence?
+Enter your query: What is artificial intelligence?
+
 ```
-**Response:**  
+**Output:**  
 ```sh
-Artificial intelligence (AI) is the simulation of human intelligence in machines that are programmed to think and learn like humans. It encompasses various technologies, such as machine learning, natural language processing, and computer vision, to enable machines to perform tasks that typically require human intelligence.
+Retrieved Chunks:
+- "Artificial intelligence (AI) is the simulation of human intelligence in machines..."
+- "It includes machine learning, NLP, computer vision, and more..."
+
 ```
