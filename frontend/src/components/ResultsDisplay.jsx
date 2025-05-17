@@ -4,7 +4,7 @@ const ResultsDisplay = ({ results }) => {
   if (!results || results.length === 0) return null;
 
   return (
-    <div className="p-4 border rounded shadow-md mt-4">
+    <div className="p-4 mt-4 rounded shadow-md bg-white text-black">
       <h2 className="text-lg font-semibold mb-2">💬 Results</h2>
       <ul className="space-y-2">
         {results.map((item, index) => (
