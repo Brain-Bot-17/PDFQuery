@@ -1,0 +1,77 @@
+Khushdeep Singh
+ (+91)7900785668
+# khushdeep22102@iiitnr.edu.in
+ï LinkedIn
+§ GitHub
+EDUCATION
+IIIT Naya Raipur
+November 2022 – Present
+B.Tech in Data Science and Artificial Intelligence
+CGPA : 7.22
+The Aaryans, Meerut
+May 2021
+Class XII
+Percentage: 94.2%
+The Aaryans, Meerut
+May 2019
+Class X
+Percentage: 94.2%
+EXPERIENCE
+Research Intern
+May 2024 – July 2024 [Certificate Link]
+Indian Institute of Technology, Jodhpur
+---
+Indian Institute of Technology, Jodhpur
+• Semi-Annotation Tool Design: Developed a semi-annotation tool to streamline agricultural image annotation with bounding
+boxes, significantly improving efficiency and reducing manual annotation workload.
+• Leaf Tip Detection Enhancement: Enhanced leaf tip detection for plant phenotyping analysis using YOLO and Faster R-CNN,
+increasing accuracy and aiding in better crop monitoring and health assessment.
+PROJECTS
+• GenieRAG: Retrieval-Augmented Generation System
+---
+• GenieRAG: Retrieval-Augmented Generation System
+FAISS, Facebook OPT-350M, Sentence Transformers, FastAPI
+Designed and implemented a RAG system leveraging FAISS and Facebook OPT-350M for extracting and processing text from
+PDFs to generate precise responses. Integrated Sentence Transformers for generating embeddings and built a FastAPI
+framework for serving the model efficiently with optimized query performance. Enhanced retrieval accuracy by fine-tuning
+---
+embedding models and improving indexing techniques for faster and more reliable text-based predictions.
+• MindReader: Emotion Detection Using Deep Learning Models
+CNN-GRU, CNN-LSTM, Sentence-BERT, Streamlit
+Engineered CNN-GRU and CNN-LSTM architectures for emotion classification tasks, leveraging Sentence-BERT embeddings
+for semantic feature extraction. Developed a Streamlit app for real-time emotion detection and comprehensive model
+---
+evaluation, improving user experience, engagement, and interactive visualization capabilities. Implemented extensive
+performance tuning techniques, including hyperparameter optimization and dropout layers, to boost classification accuracy
+and model robustness.
+• Cricket Batsman Performance Analysis System
+MongoDB, CatBoost, AWS EC2, Vercel
+Scraped Cricbuzz data and stored it in MongoDB; used CatBoost to predict player performance with high accuracy and
+---
+reliability. Deployed the backend on AWS EC2 and the frontend on Vercel, providing a full-stack, scalable solution for cricket
+analytics with real-time data insights. Incorporated advanced feature engineering techniques to improve predictive
+performance, enabling more precise player performance trends and match outcome forecasting.
+PUBLICATIONS
+• Machine Learning Algorithms for Detecting Mental Stress in College Students,
+IEEE I2CT 2024
+---
+IEEE I2CT 2024
+• Optimizing Well-Being: Unveiling Eustress and Distress through Machine Learning,
+IEEE ICICT 2024
+• AI-Enabled Real-Time Exercise Monitoring with MediaPipe and OpenCV,
+IEEE ICCNT 2024
+• A Deep Learning Approach for Early Stress Detection Using Electrodermal Activity through Wearable Devices
+Accepted at: ICPR 2024
+TECHNICAL SKILLS
+Programming Languages: Python, SQL, C/C++, JavaScript, HTML, CSS, LaTeX
+---
+Frameworks & Libraries: TensorFlow, PyTorch, Scikit-Learn, NumPy, Pandas, Transformers, FastAPI, Matplotlib,
+SciPy, OpenCV
+Developer Tools: Google Colab, Jupyter, Docker, Kaggle, GitHub, VS Code, PostgreSQL, MongoDB, Render, Vercel,
+Postman, DVC
+CERTIFICATIONS
+• Machine Learning Specialization
+October 2023
+• Deep Learning Specialization
+March 2024
+---
