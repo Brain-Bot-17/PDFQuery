@@ -9,7 +9,7 @@ const QueryDocs = ({ onResults }) => {
 
     try {
       setStatus("🔍 Searching...");
-      const res = await fetch("https://pdfquery-buql.onrender.com/query", {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/query`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

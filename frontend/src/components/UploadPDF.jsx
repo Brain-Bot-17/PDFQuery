@@ -10,10 +10,9 @@ const UploadPDF = () => {
     const formData = new FormData();
     formData.append("file", file);
 
-
     try {
       setStatus("Uploading...");
-      const res = await fetch("https://pdfquery-buql.onrender.com/upload", {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/upload`, {
         method: "POST",
         body: formData,
       });

@@ -3,34 +3,34 @@ import React, { useState } from "react";
 const ProcessControls = () => {
   const [status, setStatus] = useState("");
 
-const handleProcess = async (endpoint, message) => {
-  try {
-    setStatus(`🔄 ${message}...`);
-    const res = await fetch(`https://pdfquery-buql.onrender.com/${endpoint}`, {
-      method: "POST",
-    });
+  const handleProcess = async (endpoint, message) => {
+    try {
+      setStatus(`🔄 ${message}...`);
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/${endpoint}`, {
+        method: "POST",
+      });
 
-    const result = await res.json();
-    if (res.ok) {
-      let finalMsg = "";
+      const result = await res.json();
+      if (res.ok) {
+        let finalMsg = "";
 
-      if (endpoint === "embed") {
-        finalMsg = result.status; // ✅ use `status` field for embedding
-      } else if (endpoint === "process") {
-        finalMsg = `Extracted ${result.extracted.length} files and chunked ${result.chunked.length} files.`; // ✅ format based on result
+        if (endpoint === "embed") {
+          finalMsg = result.status;
+        } else if (endpoint === "process") {
+          finalMsg = `Extracted ${result.extracted.length} files and chunked ${result.chunked.length} files.`;
+        } else {
+          finalMsg = "✅ Success";
+        }
+
+        setStatus(`✅ ${finalMsg}`);
       } else {
-        finalMsg = "✅ Success";
+        setStatus("❌ Processing failed");
       }
-
-      setStatus(`✅ ${finalMsg}`);
-    } else {
-      setStatus("❌ Processing failed");
+    } catch (err) {
+      console.error(err);
+      setStatus("❌ Server error");
     }
-  } catch (err) {
-    console.error(err);
-    setStatus("❌ Server error");
-  }
-};
+  };
 
   return (
     <div className="p-4 border rounded shadow-md mt-4">
