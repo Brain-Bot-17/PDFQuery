@@ -6,7 +6,7 @@ const ProcessControls = () => {
 const handleProcess = async (endpoint, message) => {
   try {
     setStatus(`🔄 ${message}...`);
-    const res = await fetch(`http://localhost:8000/${endpoint}`, {
+    const res = await fetch(`https://pdfquery-buql.onrender.com/${endpoint}`, {
       method: "POST",
     });
 

@@ -13,7 +13,7 @@ const UploadPDF = () => {
 
     try {
       setStatus("Uploading...");
-      const res = await fetch("http://localhost:8000/upload", {
+      const res = await fetch("https://pdfquery-buql.onrender.com/upload", {
         method: "POST",
         body: formData,
       });
