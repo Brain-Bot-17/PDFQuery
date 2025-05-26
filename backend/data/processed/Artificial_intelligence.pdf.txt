@@ -54,6 +54,4 @@ caution, considering the ethical implications and ensuring that AI benefits soci
 In conclusion, AI is transforming the future in remarkable ways. From enhancing our daily lives 
 to revolutionizing industries, AI's impact is profound and far-reaching. As we continue to explore 
 the possibilities of AI, it is vital to balance innovation with ethical considerations, ensuring a 
-future where AI serves humanity's best interests. 
- 
- 
+future where AI serves humanity's best interests.
