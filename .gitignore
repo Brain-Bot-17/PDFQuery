@@ -19,7 +19,7 @@ logs/
 
 # Ignore data files (optional)
 *.csv
-*.json
+
 *.db
 *.sqlite
 *.h5
