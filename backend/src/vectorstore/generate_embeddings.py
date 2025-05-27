@@ -1,62 +1,56 @@
-# backend/vectorstore/generate_embeddings.py
-
 import os
-import faiss
 import pickle
 import numpy as np
+from sentence_transformers import SentenceTransformer
+import faiss
 
-DATA_DIR = "data/processed/chunks"
-VECTOR_DB_DIR = "data/vector_db"
+PROCESSED_DIR = "data/processed"
 MODEL_NAME = "sentence-transformers/paraphrase-MiniLM-L3-v2"
-BATCH_SIZE = 32  # adjust for Render memory
+BATCH_SIZE = 32
 
-def load_chunks():
-    chunks = []
-    for filename in os.listdir(DATA_DIR):
-        if filename.endswith("_chunks.txt"):
-            file_path = os.path.join(DATA_DIR, filename)
-            with open(file_path, "r", encoding="utf-8") as f:
-                parts = [chunk.strip() for chunk in f.read().split("\n---\n") if chunk.strip()]
-                chunks.extend(parts)
-    return chunks
+def load_chunks(chunk_file):
+    with open(chunk_file, "r", encoding="utf-8") as f:
+        return [c.strip() for c in f.read().split("\n---\n") if c.strip()]
 
-def store_faiss():
-    try:
-        from sentence_transformers import SentenceTransformer  # lazy import
-        model = SentenceTransformer(MODEL_NAME)
+def store_faiss_per_pdf():
+    model = SentenceTransformer(MODEL_NAME)
+    pdf_dirs = [d for d in os.listdir(PROCESSED_DIR) if os.path.isdir(os.path.join(PROCESSED_DIR, d))]
 
-        os.makedirs(VECTOR_DB_DIR, exist_ok=True)
-        chunks = load_chunks()
+    for pdf_name in pdf_dirs:
+        pdf_path = os.path.join(PROCESSED_DIR, pdf_name)
+        chunk_file = os.path.join(pdf_path, "chunks.txt")
+
+        if not os.path.exists(chunk_file):
+            print(f"⚠️ Skipping '{pdf_name}': No chunks.txt")
+            continue
+
+        print(f"🔢 Processing chunks for: {pdf_name}")
+        chunks = load_chunks(chunk_file)
 
         if not chunks:
-            raise ValueError("No chunks found. Did you run /process?")
-
-        print(f"🔢 Encoding {len(chunks)} chunks in batches of {BATCH_SIZE}...")
+            print(f"⚠️ Skipping '{pdf_name}': No non-empty chunks")
+            continue
 
         embeddings = []
         for i in range(0, len(chunks), BATCH_SIZE):
             batch = chunks[i:i + BATCH_SIZE]
-            batch_embeddings = model.encode(
+            emb = model.encode(
                 batch,
-                show_progress_bar=False,
                 convert_to_numpy=True,
-                normalize_embeddings=True  # Optional: helps in L2 similarity
+                show_progress_bar=False,
+                normalize_embeddings=True
             ).astype("float32")
-            embeddings.append(batch_embeddings)
+            embeddings.append(emb)
 
         all_embeddings = np.vstack(embeddings)
-
-        print(f"✅ Finished encoding. Building FAISS index with shape: {all_embeddings.shape}")
         index = faiss.IndexFlatL2(all_embeddings.shape[1])
         index.add(all_embeddings)
 
-        faiss.write_index(index, os.path.join(VECTOR_DB_DIR, "faiss_index"))
-        with open(os.path.join(VECTOR_DB_DIR, "chunks.pkl"), "wb") as f:
+        # Save index and chunks separately per PDF
+        faiss.write_index(index, os.path.join(pdf_path, "index.faiss"))
+        with open(os.path.join(pdf_path, "embeddings.pkl"), "wb") as f:
             pickle.dump(chunks, f)
 
-        print(f"✅ Stored {len(chunks)} embeddings in FAISS.")
-        return len(chunks)
+        print(f"✅ Stored FAISS index and embeddings for: {pdf_name}")
 
-    except Exception as e:
-        print("❌ Error in store_faiss():", e)
-        raise
+    print("✅ All PDFs processed successfully.")
